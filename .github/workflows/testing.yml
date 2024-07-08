@@ -11,23 +11,25 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
 
       - name: Get Changed Files
         id: changed_files
         run: |
-          echo "::set-output name=files::$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})"
+          git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} > changed_files.txt
 
       - name: Filter Markdown Files
         id: filter_md
         run: |
-          echo "::set-output name=md_files::$(echo ${{ steps.changed_files.outputs.files }} | tr ' ' '\n' | grep '.md')"
+          grep '\.md$' changed_files.txt > md_files.txt
+          echo "Filtered Markdown files:"
+          cat md_files.txt
 
       - name: Read Changelog
         id: changelog
         uses: jaywcjlove/github-action-read-file@main
         with:
-          path: ${{ steps.filter_md.outputs.md_files }}
+          path: $(head -n 1 md_files.txt)
 
       - name: Send Changelog to Discord
         uses: appleboy/discord-action@master
