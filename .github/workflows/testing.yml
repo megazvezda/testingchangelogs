@@ -7,48 +7,27 @@ on:
     types: [closed]
 
 jobs:
-  notify-discord:
-    name: Notify Discord
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@master
 
-      - name: Get merged .md files
-        id: md-files
-        run: |
-          git fetch origin main
-          git checkout -b temp-branch origin/main
-          git diff --name-only HEAD^ HEAD | grep '\.md$' > md_files.txt
-          echo "files=$(cat md_files.txt)" >> $GITHUB_ENV
+      - name: Read Changelog
+        id: changelog
+        uses: jaywcjlove/github-action-read-file@main
+        with:
+          path: ${{ github.event.pull_request.merged_commit_sha }}.md
 
-      - name: Read .md file contents
-        id: read-md-files
-        run: |
-          files=$(echo ${{ env.files }})
-          content=""
-          for file in $files; do
-            if [[ -f $file ]]; then
-              file_content=$(cat "$file")
-              content="$content\n\n# $file\n\n$file_content"
-            fi
-          done
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          echo "::set-output name=md_content::$content"
-
-      - name: Send notification to Discord
-        uses: appleboy/discord-action@v1.0.0
+      - name: Send Changelog to Discord
+        uses: appleboy/discord-action@master
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#48f442"
-          username: "niknak"
+          username: "ChangelogBot"
           message: |
-            🎉 New update on main!
+            🎉 New Changelog Update!
             **${{ github.event.pull_request.title }}**
 
-            ${{ github.event.pull_request.body }}
-
-            ${{ steps.read-md-files.outputs.md_content }}
+            ${{ steps.changelog.outputs.content }}
