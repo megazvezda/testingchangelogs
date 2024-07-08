@@ -22,6 +22,6 @@ jobs:
       - name: Discord Webhook Action
         uses: rguillaume/discord-action-embed@v1.0.4
         with:
-          webhook: ${{ secrets.WEBHOOK_URL }
+          webhook: ${{ secrets.WEBHOOK_URL }}
           message: ""
           embed: '{ "color": 3447003, "description": "${ pull_request.body }" }'
