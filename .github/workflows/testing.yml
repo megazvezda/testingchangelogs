@@ -17,7 +17,7 @@ jobs:
         id: changelog
         uses: jaywcjlove/github-action-read-file@main
         with:
-          path: /logs/changelog.md
+          path: changelog.md
 
       - name: Send Changelog to Discord
         uses: appleboy/discord-action@master
