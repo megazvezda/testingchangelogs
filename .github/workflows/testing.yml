@@ -1,32 +1,27 @@
-name: Notify Discord of Changelog Updates
+name: notify
 
 on:
   pull_request:
+    branches:
+      - main
     types: [closed]
 
 jobs:
-  send-changelog:
-    if: github.event.pull_request.merged == true
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@master
 
-      - name: Find changelog file
-        id: find-changelog
-        run: |
-          changelog_file=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep 'changelog-.*\.md' || true)
-          echo "::set-output name=changelog_file::$changelog_file"
-
-      - name: Read changelog file
-        if: steps.find-changelog.outputs.changelog_file != ''
-        id: read-changelog
+      - name: Read Changelog
+        id: changelog
         uses: jaywcjlove/github-action-read-file@main
         with:
-          filePath: ${{ steps.find-changelog.outputs.changelog_file }}
-          
+          path: changelog.md
+
       - name: Discord Webhook Action
-        uses: tsickert/discord-webhook@v5.3.0
+        uses: rguillaume/discord-action-embed@v1.0.4
         with:
-          webhook-url: ${{ secrets.WEBHOOK_URL }}
-          content: ${{ steps.read-changelog.outputs.content }}
+          webhook: ${{ secrets.WEBHOOK_URL }
+          message: ""
+          embed: '{ "color": 3447003, "description": "${ pull_request.body }", } }'
