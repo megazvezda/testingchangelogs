@@ -32,4 +32,4 @@ jobs:
         with:
           webhook: ${{ secrets.WEBHOOK_URL }}
           message: ""
-          embed: '{ "color": 3447003, "title": "dsaa", "description": "${{ steps.read-changelog.outputs.content }}" }'
+          embed: '{ "color": 3447003, "title": "dsaa", "description": "${{ steps.changelog.outputs.content }}" }'
