@@ -16,8 +16,7 @@ jobs:
       - name: Search for specific file
         id: search
         run: |
-          main_branc_hash=$(git rev-parse origin/main)
-          file=$(git diff --name-only ${ main_branc_hash } ${{ github.event.pull_request.head.sha }} | grep -E 'changelog-*\.md')
+          file=$(git diff --name-only $(git rev-parse origin/main) ${{ github.event.pull_request.head.sha }} | grep -E 'changelog-*\.md')
           echo "file_name=$file" >> $GITHUB_ENV
 
       - name: Read Changelog
