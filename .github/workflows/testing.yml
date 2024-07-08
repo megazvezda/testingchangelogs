@@ -27,7 +27,4 @@ jobs:
           color: "#48f442"
           username: "ChangelogBot"
           message: |
-            🎉 New Changelog Update!
-            **${{ github.event.pull_request.title }}**
-
             ${{ steps.changelog.outputs.content }}
