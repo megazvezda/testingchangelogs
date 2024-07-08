@@ -7,16 +7,48 @@ on:
     types: [closed]
 
 jobs:
-  build:
-    name: Build
+  notify-discord:
+    name: Notify Discord
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: send custom message with args
-        uses: appleboy/discord-action@master
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get merged .md files
+        id: md-files
+        run: |
+          git fetch origin main
+          git checkout -b temp-branch origin/main
+          git diff --name-only HEAD^ HEAD | grep '\.md$' > md_files.txt
+          echo "files=$(cat md_files.txt)" >> $GITHUB_ENV
+
+      - name: Read .md file contents
+        id: read-md-files
+        run: |
+          files=$(echo ${{ env.files }})
+          content=""
+          for file in $files; do
+            if [[ -f $file ]]; then
+              file_content=$(cat "$file")
+              content="$content\n\n# $file\n\n$file_content"
+            fi
+          done
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          echo "::set-output name=md_content::$content"
+
+      - name: Send notification to Discord
+        uses: appleboy/discord-action@v1.0.0
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#48f442"
           username: "niknak"
-          message: "🎉 New update on master !\n\n**${{ github.event.pull_request.title }}**\n\n${{ github.event.pull_request.body }}."
+          message: |
+            🎉 New update on main!
+            **${{ github.event.pull_request.title }}**
+
+            ${{ github.event.pull_request.body }}
+
+            ${{ steps.read-md-files.outputs.md_content }}
