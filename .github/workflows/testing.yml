@@ -23,5 +23,5 @@ jobs:
         uses: rguillaume/discord-action-embed@v1.0.4
         with:
           webhook: ${{ secrets.WEBHOOK_URL }}
-          message: "Pull Request on **${repository.owner.name}/${repository.name}**. From `${pull_request.head.ref}` to `${pull_request.base.ref}`"
+          message: ""
           embed: '{ "color": 3447003, "title": "${ pull_request.title }", "description": "${ pull_request.body }", "url": "${ pull_request.html_url }" }'
