@@ -12,24 +12,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: send custom message with args
 
-      
       - name: Read Changelog
         id: changelog
         uses: jaywcjlove/github-action-read-file@main
         with:
-          path: 123.md -
-          
+          path: 14.md
+
       - name: Send Changelog to Discord
         uses: appleboy/discord-action@master
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-          color: "#8595a1"
-          username: "adskiydro4ila"
+          color: "#48f442"
+          username: "ChangelogBot"
           message: |
-            New Changelog Update!
+            🎉 New Changelog Update!
             **${{ github.event.pull_request.title }}**
 
             ${{ steps.changelog.outputs.content }}
