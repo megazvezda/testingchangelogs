@@ -18,7 +18,7 @@ jobs:
       - name: Search for specific file
         id: search
         run: |
-          file=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep -E 'changelog-*\.md')
+          file=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep -E 'changelog-*\.md' || true)
           echo "file_name=$file" >> $GITHUB_ENV
 
       - name: Read Changelog
