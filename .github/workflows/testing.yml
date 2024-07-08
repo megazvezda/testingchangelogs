@@ -24,4 +24,4 @@ jobs:
         with:
           webhook: ${{ secrets.WEBHOOK_URL }}
           message: ""
-          embed: '{ "color": 3447003, "title": "${ pull_request.title }", "description": "${ pull_request.body }", "url": "${ pull_request.html_url }" }'
+          embed: '{ "color": 3447003, "description": "${{ steps.read-changelog.outputs.content }}", "url": "${ pull_request.html_url }" }'
