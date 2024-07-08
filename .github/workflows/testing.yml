@@ -24,4 +24,4 @@ jobs:
         with:
           webhook: ${{ secrets.WEBHOOK_URL }}
           message: "Pull Request on **${repository.owner.name}/${repository.name}**. From `${pull_request.head.ref}` to `${pull_request.base.ref}`"
-          embed: '{ "color": 3447003, "title": "${ pull_request.title }", "description": "${ pull_request.body }", "url": "${ pull_request.html_url }", "author": { "name": "${ pull_request.user.login }", "icon_url": "${ pull_request.user.avatar_url }"} }'
+          embed: '{ "color": 3447003, "title": "${ pull_request.title }", "description": "${ pull_request.body }", "url": "${ pull_request.html_url }" }'
