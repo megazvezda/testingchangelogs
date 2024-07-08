@@ -25,7 +25,7 @@ jobs:
 
       - name: Read changelog file
         id: read-changelog
-        uses: jaywcjlove/github-action-read-file@v1
+        uses: jaywcjlove/github-action-read-file@main
         with:
          filePath: ${{ steps.find-changelog.outputs.changelog_file }}
           
