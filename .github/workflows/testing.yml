@@ -1,27 +1,27 @@
-name: notify
+name: Notify Discord of Changelog Updates
 
 on:
   pull_request:
-    branches:
-      - main
     types: [closed]
 
 jobs:
-  build:
-    name: Build
+  send-changelog:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Find changelog file
         id: find-changelog
         run: |
-         changelog_file=$(git diff --name-only HEAD~1 HEAD | grep 'changelog-.*\.md')
-         echo "::set-output name=changelog_file::$changelog_file"
-        
+          changelog_file=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep 'changelog-.*\.md' || true)
+          echo "::set-output name=changelog_file::$changelog_file"
+
       - name: Read changelog file
+        if: steps.find-changelog.outputs.changelog_file != ''
         id: read-changelog
-        uses: jaywcjlove/github-action-read-file@main
+        uses: jaywcjlove/github-action-read-file@v1
         with:
           filePath: ${{ steps.find-changelog.outputs.changelog_file }}
           
