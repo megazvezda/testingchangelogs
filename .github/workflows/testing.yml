@@ -12,21 +12,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-
-      - name: Detect file
-        id: detect_file
+      
+      - name: Find changelog file
+        id: find-changelog
         run: |
-          FILE_PATH=$(find . -name '*.md')
-          echo "FILE_PATH=$FILE_PATH" >> $GITHUB_ENV
-
-      - name: Read Changelog
-        id: changelog
-        uses: jaywcjlove/github-action-read-file@main
+         changelog_file=$(git diff --name-only HEAD~1 HEAD | grep 'changelog-.*\.md')
+         echo "::set-output name=changelog_file::$changelog_file"
+        
+      - name: Read changelog file
+        id: read-changelog
+        uses: jaywcjlove/github-action-read-file@v1
         with:
-          path: ${{GITHUB_ENV}}
+          filePath: ${{ steps.find-changelog.outputs.changelog_file }}
           
       - name: Discord Webhook Action
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.WEBHOOK_URL }}
-          content: "${{ steps.changelog.outputs.content }}"
+          content: ${{ steps.read-changelog.outputs.content }}
