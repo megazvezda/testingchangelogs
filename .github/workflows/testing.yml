@@ -13,6 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
+      - name: Detect file
+        id: detect_file
+        run: |
+          FILE_PATH=$(find . -name '*.md')
+          echo "FILE_PATH=$FILE_PATH" >> $GITHUB_ENV
+
       - name: Read Changelog
         id: changelog
         uses: jaywcjlove/github-action-read-file@main
