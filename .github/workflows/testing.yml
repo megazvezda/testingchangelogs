@@ -13,15 +13,21 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
+      - name: Search for specific file
+        id: search
+        run: |
+          file=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep -E 'changelog-*\.md')
+          echo "file_name=$file" >> $GITHUB_ENV
+
       - name: Read Changelog
         id: changelog
         uses: jaywcjlove/github-action-read-file@main
         with:
-          path: changelog.md
+          path: ${{ env.file_name }}
 
       - name: Discord Webhook Action
         uses: rguillaume/discord-action-embed@v1.0.4
         with:
           webhook: ${{ secrets.WEBHOOK_URL }}
           message: ""
-          embed: '{ "color": 3447003, "title": "${ pull_request.title }", "description": "${{ steps.read-changelog.outputs.content }}" }'
+          embed: '{ "color": 3447003, "title": "", "description": "${{ steps.read-changelog.outputs.content }}" }'
