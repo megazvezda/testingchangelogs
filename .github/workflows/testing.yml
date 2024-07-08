@@ -1,30 +1,32 @@
-name: Notify Discord of Changelog Updates
+name: notify
 
 on:
   pull_request:
+    branches:
+      - main
     types: [closed]
 
 jobs:
-  send-changelog:
-    if: github.event.pull_request.merged == true
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Find changelog file
-      id: find-changelog
-      run: |
-        changelog_file=$(git diff --name-only HEAD~1 HEAD | grep 'changelog-.*\.md')
-        echo "::set-output name=changelog_file::$changelog_file"
-    - name: Read changelog file
-      id: read-changelog
-      uses: jaywcjlove/github-action-read-file@v1
-      with:
-        filePath: ${{ steps.find-changelog.outputs.changelog_file }}
-
-    - name: Send to Discord
-      uses: appleboy/discord-action@v1.0.4
-      with:
-        webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        content: ${{ steps.read-changelog.outputs.content }}
+      - uses: actions/checkout@master
+      
+      - name: Find changelog file
+        id: find-changelog
+        run: |
+         changelog_file=$(git diff --name-only HEAD~1 HEAD | grep 'changelog-.*\.md')
+         echo "::set-output name=changelog_file::$changelog_file"
+        
+      - name: Read changelog file
+        id: read-changelog
+        uses: jaywcjlove/github-action-read-file@main
+        with:
+          filePath: ${{ steps.find-changelog.outputs.changelog_file }}
+          
+      - name: Discord Webhook Action
+        uses: tsickert/discord-webhook@v5.3.0
+        with:
+          webhook-url: ${{ secrets.WEBHOOK_URL }}
+          content: ${{ steps.read-changelog.outputs.content }}
