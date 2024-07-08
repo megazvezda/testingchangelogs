@@ -17,7 +17,7 @@ jobs:
         id: changelog
         uses: jaywcjlove/github-action-read-file@main
         with:
-          path: changelog.md
+          path: .
           
       - name: Discord Webhook Action
         uses: tsickert/discord-webhook@v5.3.0
