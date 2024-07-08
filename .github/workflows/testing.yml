@@ -17,17 +17,17 @@ jobs:
         id: changelog
         uses: jaywcjlove/github-action-read-file@main
         with:
-          path: /logs/*.md
+          path: /logs/changelog.md
 
       - name: Send Changelog to Discord
         uses: appleboy/discord-action@master
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-          color: "#48f442"
-          username: "ChangelogBot"
+          color: "#8595a1"
+          username: "adskiydro4ila"
           message: |
-            🎉 New Changelog Update!
+            New Changelog Update!
             **${{ github.event.pull_request.title }}**
 
             ${{ steps.changelog.outputs.content }}
