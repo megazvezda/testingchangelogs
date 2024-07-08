@@ -17,7 +17,7 @@ jobs:
         id: changelog
         uses: jaywcjlove/github-action-read-file@main
         with:
-          path: ${{ github.event.pull_request.merged_commit_sha }}.md
+          path: ebanat.md
 
       - name: Send Changelog to Discord
         uses: appleboy/discord-action@master
