@@ -23,5 +23,5 @@ jobs:
         uses: rguillaume/discord-action-embed@v1.0.4
         with:
           webhook: ${{ secrets.WEBHOOK_URL }}
-          message: ""
+          message: "4"
           embed: '{ "color": 3447003, "description": "${ pull_request.body }" }'
