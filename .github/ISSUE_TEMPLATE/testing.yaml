@@ -6,8 +6,8 @@ body:
   - type: input
     id: name
     attributes:
-      label: Краткое название бага
-      placeholder: пропал аксолотль..
+      label: Короткое название
+      placeholder: портал работает некорректно
     validations:
       required: true
     
