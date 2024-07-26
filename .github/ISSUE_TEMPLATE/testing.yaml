@@ -35,9 +35,8 @@ body:
   - type: input
     id: media
     attributes:
-      label: Медиа
-      placeholder: Если возможно, прикрепите скриншоты или видео
-      value: Любой удобный хостинг (imgur; imgbb)
+      label: Если возможно, прикрепите скриншоты или видео
+      placeholder: Любой удобный хостинг (imgur; imgbb)
     validations:
       required: false
 
