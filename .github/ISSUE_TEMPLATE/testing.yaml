@@ -7,7 +7,7 @@ body:
     id: name
     attributes:
       label: Короткое название
-      placeholder: Придумайте ему имя
+      placeholder: Придумайте имя
     validations:
       required: true
     
