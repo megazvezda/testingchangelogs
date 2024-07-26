@@ -1,29 +1,28 @@
-name: Ability Bug
-description: An ability behaves in a way it probably shouldn't!
+name: Серверный баг
 
-labels: ["ability"]
+labels: ["server"]
 
 body:
   - type: input
     id: name
     attributes:
-      label: Ability name
-      placeholder: ex. Spell steal
+      label: Краткое название бага
+      placeholder: пропал аксолотль..
     validations:
       required: true
     
   - type: textarea
     id: desc
     attributes:
-      label: Description
-      placeholder: What is the problem?
+      label: Описание
+      placeholder: В чем проблема?
     validations:
       required: true
 
   - type: input
     id: match-id
     attributes:
-      label: Example Match ID (and possibly Timestamp)
-      placeholder: ex. 6575941888 - 03:22
+      label: Дополнительная информация
+      placeholder:
     validations:
       required: true
