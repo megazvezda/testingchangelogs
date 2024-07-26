@@ -6,16 +6,17 @@ body:
   - type: input
     id: name
     attributes:
-      label: Короткое название
-      placeholder: Придумайте имя
+      label: Опишите баг
+      placeholder: Cжатое описание ошибки
     validations:
       required: true
     
   - type: textarea
     id: desc
     attributes:
-      label: Описание
-      placeholder: В чем проблема?
+      label: Шаги для воспроизведения поведения:
+      value: |
+      Thanks for taking the time to fill out this bug! If you need real-time help, join us on Discord.
     validations:
       required: true
 
