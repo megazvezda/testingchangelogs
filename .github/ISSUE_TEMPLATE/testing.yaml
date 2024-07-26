@@ -14,9 +14,10 @@ body:
   - type: textarea
     id: desc
     attributes:
-      label: Шаги для воспроизведения поведения
-      value: |
-      Thanks for taking the time to fill out this bug! If you need real-time help, join us on Discord.
+    value: |
+     Thanks for taking the time to fill out this bug! If you need real-time help, join us on Discord.
+     
+     label: Шаги для воспроизведения поведения
     validations:
       required: true
 
