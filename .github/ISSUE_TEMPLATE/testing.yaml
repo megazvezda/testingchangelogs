@@ -1,5 +1,5 @@
 name: Серверный баг
-description: Опишите свою проблему
+description: Опишите свою проблему.
 labels: ["server"]
 
 body:
