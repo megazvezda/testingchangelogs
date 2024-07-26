@@ -24,7 +24,7 @@ body:
     validations:
       required: true
 
-  - type: input
+  - type: textarea
     id: expected
     attributes:
       label: Ожидаемое поведение
@@ -37,6 +37,7 @@ body:
     attributes:
       label: Медиа
       placeholder: Если возможно, прикрепите скриншоты или видео
+      value: Любой удобный хостинг (imgur; imgbb)
     validations:
       required: false
 
