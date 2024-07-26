@@ -13,11 +13,8 @@ body:
     
   - type: textarea
     id: desc
-    attributes:
-    value: |
-     Thanks for taking the time to fill out this bug! If you need real-time help, join us on Discord.
-     
-    label: Шаги для воспроизведения поведения
+    attributes:  
+      label: Шаги для воспроизведения поведения
     validations:
       required: true
 
