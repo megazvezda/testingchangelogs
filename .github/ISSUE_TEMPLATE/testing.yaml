@@ -7,7 +7,7 @@ body:
     id: name
     attributes:
       label: Короткое название
-      placeholder: портал работает некорректно
+      placeholder:
     validations:
       required: true
     
