@@ -1,5 +1,5 @@
 name: Серверный баг
-
+description: Ошибка появилась на сервере
 labels: ["server"]
 
 body:
