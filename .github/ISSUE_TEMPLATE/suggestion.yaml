@@ -9,6 +9,7 @@ body:
       placeholder: Я всегда расстраиваюсь, когда [...]
     validations:
       required: true
+      
   - type: textarea
     id: description
     attributes:
