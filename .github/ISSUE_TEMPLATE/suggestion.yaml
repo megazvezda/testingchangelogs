@@ -1,7 +1,7 @@
 name: Для предложений
 description: Помогите нам стать лучше
 body:
-  - type: input
+   - type: input
     id: suggestion
     attributes:
       label: Четкое и сжатое описание проблемы
