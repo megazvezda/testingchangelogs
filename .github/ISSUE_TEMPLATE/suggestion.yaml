@@ -1,7 +1,7 @@
 name: Для предложений
 description: Помогите нам стать лучше
 body:
-   - type: input
+  - type: input
     id: suggestion
     attributes:
       label: Четкое и сжатое описание проблемы
@@ -9,8 +9,8 @@ body:
       placeholder: Я всегда расстраиваюсь, когда [...]
     validations:
       required: true
-      
-   - type: textarea
+
+  - type: textarea
     id: description
     attributes:
       label: Опишите решение, которое вы хотели бы получить
@@ -19,20 +19,20 @@ body:
     validations:
       required: true
 
-   - type: textarea
+  - type: textarea
     id: alternatives
     attributes:
       label: Опишите альтернативы, которые вы рассматривали
-      description: Четкое и сжатое описание любых альтернативных механки или фич, которые вы рассматривали
+      description: Четкое и сжатое описание любых альтернативных механизмов или фич, которые вы рассматривали
       placeholder: Я считаю, что ... лучше оптимизирован и может заменить ...
     validations:
       required: true
 
-   - type: textarea
+  - type: textarea
     id: context
     attributes:
       label: Дополнительный контекст
       description: Добавьте сюда любой другой контекст или скриншоты о запросе фичи
-      placeholder:
+      placeholder: ''
     validations:
       required: true
