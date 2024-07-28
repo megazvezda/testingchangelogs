@@ -10,7 +10,7 @@ body:
     validations:
       required: true
       
-  - type: textarea
+   - type: textarea
     id: description
     attributes:
       label: Опишите решение, которое вы хотели бы получить
