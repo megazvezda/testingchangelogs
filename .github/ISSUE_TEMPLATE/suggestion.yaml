@@ -19,7 +19,7 @@ body:
     validations:
       required: true
 
-    - type: textarea
+   - type: textarea
     id: alternatives
     attributes:
       label: Опишите альтернативы, которые вы рассматривали
@@ -28,7 +28,7 @@ body:
     validations:
       required: true
 
-    - type: textarea
+   - type: textarea
     id: context
     attributes:
       label: Дополнительный контекст
