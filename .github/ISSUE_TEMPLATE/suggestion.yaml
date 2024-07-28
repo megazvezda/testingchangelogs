@@ -33,6 +33,5 @@ body:
     attributes:
       label: Дополнительный контекст
       description: Добавьте сюда любой другой контекст или скриншоты о запросе фичи
-      placeholder: ''
     validations:
       required: true
