@@ -34,4 +34,4 @@ body:
       label: Дополнительный контекст
       description: Добавьте сюда любой другой контекст или скриншоты о запросе фичи
     validations:
-      required: true
+      required: false
