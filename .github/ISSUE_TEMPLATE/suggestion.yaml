@@ -1,22 +1,18 @@
-name: Suggestion
+name: Для предложений
 description: Помогите нам стать лучше
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Спасибо!
   - type: input
     id: suggestion
     attributes:
       label: Название предложения
-      description: Поделитесь своими желаниями
+      description: Сжатое описание
       placeholder:
     validations:
       required: true
   - type: textarea
     id: description
     attributes:
-      label: Опишите предложение
+      label: Раскройте предложение
       description: Как и почему это предложение поможет нам?
       placeholder: Я хочу видеть здесь ... , потому что ...
     validations:
