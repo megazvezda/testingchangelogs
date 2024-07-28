@@ -1,5 +1,5 @@
 name: Баг на сервере
-description: Для проблем с prdx.so и cr.prdx.so
+description: Для prdx.so и cr.prdx.so
 labels: ["server"]
 
 body:
