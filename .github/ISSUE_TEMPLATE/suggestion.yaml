@@ -20,7 +20,7 @@ body:
       required: true
 
     - type: textarea
-    id: description
+    id: alternatives
     attributes:
       label: Опишите альтернативы, которые вы рассматривали
       description: Четкое и сжатое описание любых альтернативных механки или фич, которые вы рассматривали
@@ -29,7 +29,7 @@ body:
       required: true
 
     - type: textarea
-    id: description
+    id: context
     attributes:
       label: Дополнительный контекст
       description: Добавьте сюда любой другой контекст или скриншоты о запросе фичи
