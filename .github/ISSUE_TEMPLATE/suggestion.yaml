@@ -15,7 +15,7 @@ body:
     attributes:
       label: Опишите решение, которое вы хотели бы получить
       description: Четкое и сжатое описание того, что вы хотите, чтобы произошло
-      placeholder: Я хочу видеть здесь ... , потому что ...
+      placeholder: Я хочу видеть здесь X , потому что Z
     validations:
       required: true
 
@@ -24,9 +24,9 @@ body:
     attributes:
       label: Опишите альтернативы, которые вы рассматривали
       description: Четкое и сжатое описание любых альтернативных механизмов или фич, которые вы рассматривали
-      placeholder: Я считаю, что ... лучше оптимизирован и может заменить ...
+      placeholder: Я считаю, что X лучше оптимизирован и может заменить Z
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: context
