@@ -36,7 +36,7 @@ body:
     id: media
     attributes:
       label: Если возможно, прикрепите скриншоты или видео
-      placeholder: Любой удобный хостинг (imgur; imgbb)
+      placeholder: можно вставить сюда
     validations:
       required: false
 
