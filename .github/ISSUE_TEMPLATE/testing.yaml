@@ -36,7 +36,7 @@ body:
     id: media
     attributes:
       label: Если возможно, прикрепите скриншоты или видео
-      placeholder: можно вставить сюда
+      placeholder: Вставьте сюда
     validations:
       required: false
 
